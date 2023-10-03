@@ -6,4 +6,6 @@ import com.colatina.app.service.core.domain.WalletDomain;
 public interface WalletGateway {
 
     WalletDomain create(AccountDomain account);
+
+    String getAccountBalance(Integer accountId);
 }
