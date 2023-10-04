@@ -6,6 +6,7 @@ import com.colatina.app.service.core.gateway.TransactionGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class GetAccountStatementUseCase {
 
     public List<TransactionDomain> getAccountStatement(Integer accountId, LocalDateTime startDate, LocalDateTime endDate) {
         return transactionGateway.getAccountStatement(accountId, startDate, endDate);
+    }
+
+    public List<TransactionDomain> getAccountStatementByValue(Integer accountId, BigDecimal value) {
+        return transactionGateway.getAccountStatementByValue(accountId, value);
     }
 
 }

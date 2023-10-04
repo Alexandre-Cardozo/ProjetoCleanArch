@@ -7,9 +7,9 @@ spring:
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/database
-    username: database
-    password: database
+    url: jdbc:postgresql://localhost:49155/bank
+    username: postgres
+    password: 12345
     hikari:
       auto-commit: false
   jackson:
