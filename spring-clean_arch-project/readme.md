@@ -15,6 +15,6 @@ O SGT tem a função de gerenciar as transações de usuários cadastrados no si
 * GetAccountBalanceUseCase
   * _`Corrigir arquitetura de pastas do caso de uso`_.
 * MakeTransactionUseCase
-  * Usário que está transferindo e que está recebendo a trasanção devem estar ativos no sistema;
-  * Deve haver saldo suficiente na carteira do usuário que está transferindo;
-  * Sistema deve debitar e creditar corretamente das contas(ambas as operações devem ocorrer com sucesso);
+  * `Usário que está transferindo e que está recebendo a trasanção devem estar ativos no sistema`;
+  * `Deve haver saldo suficiente na carteira do usuário que está transferindo`;
+  * `Sistema deve debitar e creditar corretamente das contas(ambas as operações devem ocorrer com sucesso)`;

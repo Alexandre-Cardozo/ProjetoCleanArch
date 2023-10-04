@@ -37,11 +37,18 @@ public class AccountDomain {
     @NotNull
     private WalletDomain wallet;
 
+    @NotNull
+    private  AccountInfoDomain accountInfo;
+
     public int getAge(){
         return LocalDate.now().getYear() - this.getBirthDate().getYear();
     }
 
     public boolean isUnderAge(){
         return this.getAge() < 18;
+    }
+
+    public boolean isAccountActive(){
+        return this.status == AccountStatus.ACTIVE;
     }
 }
