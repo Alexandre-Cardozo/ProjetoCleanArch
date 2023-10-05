@@ -8,4 +8,6 @@ public interface AccountGateway {
     AccountDomain create(AccountDomain account);
 
     void changeStatus(Integer account_id, AccountStatus status);
+
+    AccountDomain findById(Integer account_id);
 }

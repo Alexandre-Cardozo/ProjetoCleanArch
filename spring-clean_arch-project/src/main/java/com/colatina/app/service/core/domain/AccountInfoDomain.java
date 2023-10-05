@@ -10,5 +10,6 @@ public class AccountInfoDomain {
     private Integer id;
     private String name;
     private String lastName;
+    private AccountDomain account;
 
 }

@@ -13,5 +13,7 @@ public interface TransactionGateway {
 
     List<TransactionDomain> getAccountStatementByValue(Integer accountId, BigDecimal value);
 
-    TransactionDomain makeTransaction(TransactionDomain transactionDomain, AccountDomain creditAccount, AccountDomain debitAccount);
+    TransactionDomain create(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value);
+
+    TransactionDomain persistStatus(TransactionDomain transactionDomain);
 }

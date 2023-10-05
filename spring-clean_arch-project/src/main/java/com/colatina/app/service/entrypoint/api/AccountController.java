@@ -21,8 +21,8 @@ public class AccountController {
     private final ChangeStatusUseCase changeStatusUseCase;
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody @Valid AccountDomain data) {
-        createAccountUseCase.execute(data);
+    public ResponseEntity<Void> create(@RequestBody @Valid AccountDomain account) {
+        createAccountUseCase.execute(account);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

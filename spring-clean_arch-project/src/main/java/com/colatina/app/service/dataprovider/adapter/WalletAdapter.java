@@ -9,6 +9,7 @@ import com.colatina.app.service.dataprovider.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -35,5 +36,11 @@ public class WalletAdapter implements WalletGateway {
     public String getAccountBalance(Integer accountId) {
         return NumberFormat.getInstance(new Locale("pt", "BR"))
                 .format(walletRepository.findBalanceByAccountId(accountId));
+    }
+
+    @Override
+    public void updateBalance(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value) {
+        creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().subtract(value));
+        creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().add(value));
     }
 }
