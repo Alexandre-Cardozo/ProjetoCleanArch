@@ -33,9 +33,8 @@ public class WalletAdapter implements WalletGateway {
     }
 
     @Override
-    public String getAccountBalance(Integer accountId) {
-        return NumberFormat.getInstance(new Locale("pt", "BR"))
-                .format(walletRepository.findBalanceByAccountId(accountId));
+    public BigDecimal getAccountBalance(Integer accountId) {
+        return walletRepository.findBalanceByAccountId(accountId);
     }
 
     @Override

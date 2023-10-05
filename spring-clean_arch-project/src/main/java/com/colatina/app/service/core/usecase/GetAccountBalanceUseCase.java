@@ -5,6 +5,7 @@ import com.colatina.app.service.dataprovider.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -14,7 +15,7 @@ public class GetAccountBalanceUseCase {
 
     private final WalletGateway walletGateway;
 
-    public String getAccountBalance(Integer accountId) {
+    public BigDecimal getAccountBalance(Integer accountId) {
         return walletGateway.getAccountBalance(accountId);
     }
 

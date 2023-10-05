@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/api/wallet")
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ public class WalletController {
     private final GetAccountBalanceUseCase accountBalanceUseCase;
 
     @GetMapping("/account-balance/{account_id}")
-    public ResponseEntity<String> getAccountBalance(@PathVariable("account_id") Integer accountId) {
+    public ResponseEntity<BigDecimal> getAccountBalance(@PathVariable("account_id") Integer accountId) {
         return new ResponseEntity<>(accountBalanceUseCase.getAccountBalance(accountId), HttpStatus.OK);
     }
 

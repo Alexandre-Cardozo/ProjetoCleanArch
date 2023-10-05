@@ -9,7 +9,7 @@ public interface WalletGateway {
 
     WalletDomain create(AccountDomain account);
 
-    String getAccountBalance(Integer accountId);
+    BigDecimal getAccountBalance(Integer accountId);
 
     void updateBalance(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value);
 }
