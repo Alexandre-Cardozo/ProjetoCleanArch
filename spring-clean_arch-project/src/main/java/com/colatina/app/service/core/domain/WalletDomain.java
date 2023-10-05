@@ -14,4 +14,7 @@ public class WalletDomain {
 
     @NotNull
     private BigDecimal balance;
+
+    @NotNull
+    private AccountDomain account;
 }

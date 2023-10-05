@@ -7,5 +7,5 @@ public interface AccountGateway {
 
     AccountDomain create(AccountDomain account);
 
-    void changeStatus(AccountDomain account, AccountStatus status);
+    void changeStatus(Integer account_id, AccountStatus status);
 }

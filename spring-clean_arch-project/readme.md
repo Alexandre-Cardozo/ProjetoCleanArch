@@ -11,7 +11,7 @@ O SGT tem a função de gerenciar as transações de usuários cadastrados no si
 * ChangeStatusUseCase
   * `Usuário pode bloquear e desbloquear sua conta`. 
 * GetAccountStatementUseCase
-  * Melhorar os filtros para obter melhores resultados no extrato do usuário;
+  * `Melhorar os filtros para obter melhores resultados no extrato do usuário`;
 * GetAccountBalanceUseCase
   * _`Corrigir arquitetura de pastas do caso de uso`_.
 * MakeTransactionUseCase

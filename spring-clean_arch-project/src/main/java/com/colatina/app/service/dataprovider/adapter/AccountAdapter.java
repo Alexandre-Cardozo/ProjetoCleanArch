@@ -3,6 +3,7 @@ package com.colatina.app.service.dataprovider.adapter;
 import com.colatina.app.service.configuration.mapper.AccountMapper;
 import com.colatina.app.service.core.domain.AccountDomain;
 import com.colatina.app.service.core.domain.enumeration.AccountStatus;
+import com.colatina.app.service.core.exception.BusinessException;
 import com.colatina.app.service.core.gateway.AccountGateway;
 import com.colatina.app.service.dataprovider.repository.AccountRepository;
 import com.colatina.app.service.dataprovider.entity.AccountEntity;
@@ -26,9 +27,13 @@ public class AccountAdapter implements AccountGateway {
     }
 
     @Override
-    public void changeStatus(AccountDomain account, AccountStatus status) {
+    public void changeStatus(Integer account_id, AccountStatus status) {
+        AccountEntity account = findByAccount(account_id);
+        account.setStatus(String.valueOf(status));
+    }
 
-        account.setStatus(status);
+    private AccountEntity findByAccount(Integer account_id) {
+        return repository.findById(account_id).orElseThrow(() -> new BusinessException("User not found"));
     }
 
 }

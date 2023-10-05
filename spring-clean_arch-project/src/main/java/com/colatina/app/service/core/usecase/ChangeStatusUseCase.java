@@ -13,9 +13,9 @@ public class ChangeStatusUseCase {
 
     private final AccountGateway accountGateway;
 
-    public void execute(AccountDomain account, AccountStatus status){
+    public void accountChangeStatus(Integer account_id, AccountStatus status){
         try {
-            accountGateway.changeStatus(account, status);
+            accountGateway.changeStatus(account_id, status);
         }catch (Exception e){
             throw new BusinessException("Error to change account status");
         }
