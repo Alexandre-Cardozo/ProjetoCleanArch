@@ -2,6 +2,8 @@ package com.colatina.app.service.core.usecase;
 
 import com.colatina.app.service.core.domain.AccountDomain;
 import com.colatina.app.service.core.exception.BusinessException;
+import com.colatina.app.service.core.exception.NegativeCPFException;
+import com.colatina.app.service.core.exception.UnderAgeException;
 import com.colatina.app.service.core.gateway.AccountGateway;
 import com.colatina.app.service.core.gateway.NegativeCpfGateway;
 import com.colatina.app.service.core.gateway.WalletGateway;
@@ -20,10 +22,10 @@ public class CreateAccountUseCase {
 
     public void execute(AccountDomain account) {
         if (account.isUnderAge()){
-            throw new BusinessException("The user is under age, cannot create an account");
+            throw new UnderAgeException();
         }
         if (negativeCpfGateway.isNegativeCpf(account.getDocument())){
-            throw new BusinessException("The user have the cpf negative");
+            throw new NegativeCPFException();
         }
 
         try {
