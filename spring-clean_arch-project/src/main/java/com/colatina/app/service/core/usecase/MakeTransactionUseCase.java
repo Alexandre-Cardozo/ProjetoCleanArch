@@ -25,7 +25,7 @@ public class MakeTransactionUseCase {
 
     public TransactionDomain execute(TransactionDomain transactionDomain){
         AccountDomain creditAccount = accountGateway.findById(transactionDomain.getAccountOrigin().getId());
-        AccountDomain debitAccount = accountGateway.findById(transactionDomain.getAccountOrigin().getId());
+        AccountDomain debitAccount = accountGateway.findById(transactionDomain.getAccountDestination().getId());
 
         if(!creditAccount.isAccountActive()){
             throw new InactiveAccountStatusException("crediting");
@@ -37,18 +37,25 @@ public class MakeTransactionUseCase {
 
         BigDecimal creditingAccountBalance = walletGateway.getAccountBalance(creditAccount.getId());
 
-        if(creditingAccountBalance.compareTo(transactionDomain.getValue()) > 0){
-            transactionGateway.create(creditAccount, debitAccount, transactionDomain.getValue());
-        }else throw new BusinessException("The credit account balance has insufficient credit");
+        if(creditingAccountBalance.compareTo(transactionDomain.getValue()) <= 0){
+            throw new BusinessException("The credit account balance has insufficient credit");
+        }
 
+        transactionGateway.create(creditAccount, debitAccount, transactionDomain.getValue());
+
+        updateTransactionAndBalance(creditAccount, debitAccount, transactionDomain);
+
+        return transactionGateway.persistStatus(transactionDomain);
+    }
+
+    private void updateTransactionAndBalance(AccountDomain creditAccount, AccountDomain debitAccount, TransactionDomain transactionDomain){
         try {
-            walletGateway.updateBalance(creditAccount, debitAccount, transactionDomain.getValue());
+            creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().subtract(transactionDomain.getValue()));
+            creditAccount.getWallet().setBalance(debitAccount.getWallet().getBalance().add(transactionDomain.getValue()));
             transactionDomain.setStatus(TransactionStatus.PROCESSED);
         }catch (Exception e){
             transactionDomain.setStatus(TransactionStatus.REFUSED);
             throw new BusinessException("Can not process the transaction");
         }
-
-        return transactionGateway.persistStatus(transactionDomain);
     }
 }

@@ -1,7 +1,6 @@
 package com.colatina.app.service.core.usecase;
 
 import com.colatina.app.service.core.gateway.WalletGateway;
-import com.colatina.app.service.dataprovider.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

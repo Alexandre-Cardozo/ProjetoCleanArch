@@ -11,5 +11,4 @@ public interface WalletGateway {
 
     BigDecimal getAccountBalance(Integer accountId);
 
-    void updateBalance(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value);
 }

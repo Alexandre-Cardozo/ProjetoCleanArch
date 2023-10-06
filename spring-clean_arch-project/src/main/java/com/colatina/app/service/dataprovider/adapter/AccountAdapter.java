@@ -28,18 +28,13 @@ public class AccountAdapter implements AccountGateway {
 
     @Override
     public void changeStatus(Integer account_id, AccountStatus status) {
-        AccountEntity account = findByAccount(account_id);
+        AccountEntity account = repository.findById(account_id).orElseThrow(() -> new BusinessException("User not found"));
         account.setStatus(String.valueOf(status));
     }
 
     @Override
     public AccountDomain findById(Integer account_id) {
-        AccountEntity accountEntity = repository.findById(account_id).orElseThrow(() -> new BusinessException("User not found"));
-        return mapper.toDto(accountEntity);
-    }
-
-    public AccountEntity findByAccount(Integer account_id) {
-        return repository.findById(account_id).orElseThrow(() -> new BusinessException("User not found"));
+        return mapper.toDto(repository.findById(account_id).orElseThrow(() -> new BusinessException("User not found")));
     }
 
 }

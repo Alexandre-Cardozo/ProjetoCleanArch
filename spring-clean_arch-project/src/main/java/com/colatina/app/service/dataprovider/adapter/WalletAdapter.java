@@ -37,9 +37,4 @@ public class WalletAdapter implements WalletGateway {
         return walletRepository.findBalanceByAccountId(accountId);
     }
 
-    @Override
-    public void updateBalance(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value) {
-        creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().subtract(value));
-        creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().add(value));
-    }
 }
