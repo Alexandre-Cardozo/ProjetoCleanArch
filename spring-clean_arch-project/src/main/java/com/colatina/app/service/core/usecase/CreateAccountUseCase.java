@@ -24,6 +24,7 @@ public class CreateAccountUseCase {
         if (account.isUnderAge()){
             throw new UnderAgeException();
         }
+
         if (negativeCpfGateway.isNegativeCpf(account.getDocument())){
             throw new NegativeCPFException();
         }
