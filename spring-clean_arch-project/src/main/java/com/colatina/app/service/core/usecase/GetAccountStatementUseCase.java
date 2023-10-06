@@ -24,4 +24,8 @@ public class GetAccountStatementUseCase {
         return transactionGateway.getAccountStatementByValue(accountId, value);
     }
 
+    public BigDecimal getAmountAccountStatementByPeriod(Integer accountId, LocalDateTime startDate, LocalDateTime endDate){
+        return transactionGateway.getAmountAccountStatementByPeriod(accountId, startDate, endDate);
+    }
+
 }

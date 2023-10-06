@@ -39,6 +39,13 @@ public class TransactionController {
         return new ResponseEntity<>(accountStatement, accountStatement.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK);
     }
 
+    @GetMapping("/account-statement-amount/{account_id}")
+    public ResponseEntity<BigDecimal> getAmountAccountStatementByPeriod(@PathVariable("account_id") Integer accountId,
+                                                        @RequestHeader("start_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime startDate,
+                                                        @RequestHeader("end_date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime endDate) {
+        return new ResponseEntity<>(getAccountStatementUseCase.getAmountAccountStatementByPeriod(accountId, startDate, endDate), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody @Valid TransactionDomain transaction) {
         makeTransactionUseCase.execute(transaction);

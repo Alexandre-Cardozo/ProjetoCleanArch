@@ -13,6 +13,8 @@ public interface TransactionGateway {
 
     List<TransactionDomain> getAccountStatementByValue(Integer accountId, BigDecimal value);
 
+    BigDecimal getAmountAccountStatementByPeriod(Integer accountId, LocalDateTime startDate, LocalDateTime endDate);
+
     TransactionDomain create(AccountDomain creditAccount, AccountDomain debitAccount, BigDecimal value);
 
     TransactionDomain persistStatus(TransactionDomain transactionDomain);

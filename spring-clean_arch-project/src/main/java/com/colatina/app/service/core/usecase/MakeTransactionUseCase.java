@@ -35,7 +35,7 @@ public class MakeTransactionUseCase {
             throw new InactiveAccountStatusException("debiting");
         }
 
-        BigDecimal creditingAccountBalance = new BigDecimal(walletGateway.getAccountBalance(creditAccount.getId()));
+        BigDecimal creditingAccountBalance = walletGateway.getAccountBalance(creditAccount.getId());
 
         if(creditingAccountBalance.compareTo(transactionDomain.getValue()) > 0){
             transactionGateway.create(creditAccount, debitAccount, transactionDomain.getValue());
