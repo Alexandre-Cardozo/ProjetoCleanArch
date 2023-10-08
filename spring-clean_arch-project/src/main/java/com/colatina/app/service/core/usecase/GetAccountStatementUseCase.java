@@ -20,12 +20,4 @@ public class GetAccountStatementUseCase {
         return transactionGateway.getAccountStatement(accountId, startDate, endDate);
     }
 
-    public List<TransactionDomain> getAccountStatementByValue(Integer accountId, BigDecimal value) {
-        return transactionGateway.getAccountStatementByValue(accountId, value);
-    }
-
-    public BigDecimal getAmountAccountStatementByPeriod(Integer accountId, LocalDateTime startDate, LocalDateTime endDate){
-        return transactionGateway.getAmountAccountStatementByPeriod(accountId, startDate, endDate);
-    }
-
 }

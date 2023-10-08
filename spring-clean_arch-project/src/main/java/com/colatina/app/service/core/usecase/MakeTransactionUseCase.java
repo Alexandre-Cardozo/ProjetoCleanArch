@@ -43,19 +43,18 @@ public class MakeTransactionUseCase {
 
         transactionGateway.create(creditAccount, debitAccount, transactionDomain.getValue());
 
-        updateTransactionAndBalance(creditAccount, debitAccount, transactionDomain);
-
-        return transactionGateway.persistStatus(transactionDomain);
-    }
-
-    private void updateTransactionAndBalance(AccountDomain creditAccount, AccountDomain debitAccount, TransactionDomain transactionDomain){
         try {
-            creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().subtract(transactionDomain.getValue()));
-            creditAccount.getWallet().setBalance(debitAccount.getWallet().getBalance().add(transactionDomain.getValue()));
-            transactionDomain.setStatus(TransactionStatus.PROCESSED);
+            updateTransactionAndBalance(creditAccount, debitAccount, transactionDomain);
+            return transactionGateway.persistStatus(transactionDomain);
         }catch (Exception e){
             transactionDomain.setStatus(TransactionStatus.REFUSED);
             throw new BusinessException("Can not process the transaction");
         }
+    }
+
+    private void updateTransactionAndBalance(AccountDomain creditAccount, AccountDomain debitAccount, TransactionDomain transactionDomain){
+            creditAccount.getWallet().setBalance(creditAccount.getWallet().getBalance().subtract(transactionDomain.getValue()));
+            creditAccount.getWallet().setBalance(debitAccount.getWallet().getBalance().add(transactionDomain.getValue()));
+            transactionDomain.setStatus(TransactionStatus.PROCESSED);
     }
 }
